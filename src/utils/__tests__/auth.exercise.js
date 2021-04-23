@@ -1,10 +1,7 @@
 // Testing Pure Functions
 
-// 💣 remove this todo test (it's only here so you don't get an error about missing tests)
-test.todo('remove me')
-
 // 🐨 import the function that we're testing
-// 💰 import {isPasswordAllowed} from '../auth'
+import {isPasswordAllowed} from '../auth'
 
 // 🐨 write tests for valid and invalid passwords
 // 💰 here are some you can use:
@@ -19,3 +16,27 @@ test.todo('remove me')
 // - abc123! // no uppercase letters
 // - ABC123! // no lowercase letters
 // - ABCdef123 // no non-alphanumeric characters
+
+describe('Passwords validity', () => {
+  test('Except valid password', () => {
+    const validPassword = '!Abc134'
+    expect(isPasswordAllowed(validPassword)).toBe(true)
+  })
+
+  test('Do not except password without digits', () => {
+    const invalidPassword = '!Abchjbj'
+    expect(isPasswordAllowed(invalidPassword)).toBe(false)
+  })
+  test('Do not except password without symbols', () => {
+    const invalidPassword = '234kjbAbc134'
+    expect(isPasswordAllowed(invalidPassword)).toBe(false)
+  })
+  test('Do not except password without capital letter', () => {
+    const invalidPassword = '!iubc134fdg?;'
+    expect(isPasswordAllowed(invalidPassword)).toBe(false)
+  })
+  test('Do not except password without small letter', () => {
+    const invalidPassword = 'FVGT!134?;'
+    expect(isPasswordAllowed(invalidPassword)).toBe(false)
+  })
+})
